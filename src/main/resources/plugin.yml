@@ -2,6 +2,7 @@ name: FusionBlocks
 version: '${version}'
 main: pw.fusionmine.fusionblocks.FusionBlocks
 api-version: '1.21'
+depend: [WorldGuard]
 commands:
   fusioncustomtnt:
   fusioncustomfurnace:

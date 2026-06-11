@@ -21,10 +21,7 @@ public class ChunkerStorage {
 
     private FileConfiguration config;
 
-    private FusionBlocks plugin;
-
     public ChunkerStorage(FusionBlocks plugin, ChunkerManager chunkerManager) {
-        this.plugin = plugin;
         this.chunkerManager = chunkerManager;
         this.file = new File(plugin.getDataFolder(), "storage/chunker.yml");
         if (!this.file.exists()) {
@@ -54,8 +51,6 @@ public class ChunkerStorage {
                 chunkerManager.placeChunker(location, chunker);
             }
         }
-
-        this.plugin.getLogger().info("На сервере установлено " + chunkerManager.placedChunker.size() + " прогрузчиков чанков.");
     }
 
     public void save(Location location, Chunker chunker) {

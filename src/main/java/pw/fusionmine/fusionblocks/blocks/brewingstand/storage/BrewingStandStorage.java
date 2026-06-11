@@ -21,10 +21,7 @@ public class BrewingStandStorage {
 
     private FileConfiguration config;
 
-    private FusionBlocks plugin;
-
     public BrewingStandStorage(FusionBlocks plugin, BrewingStandManager brewingStandManager) {
-        this.plugin = plugin;
         this.brewingStandManager = brewingStandManager;
         this.file = new File(plugin.getDataFolder(), "storage/brewing-stand.yml");
         if (!this.file.exists()) {
@@ -54,7 +51,6 @@ public class BrewingStandStorage {
                 brewingStandManager.placeBrewingStand(location, customBrewingStand);
             }
         }
-        this.plugin.getLogger().info("На сервере установлено " + brewingStandManager.placedBrewingStand.size() + " кастомных зельеварок.");
     }
 
     public void save(Location location, CustomBrewingStand customBrewingStand) {

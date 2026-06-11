@@ -12,12 +12,14 @@ repositories {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
+    maven { url "https://maven.enginehub.org/repo/" } // WorldGuard
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
     compileOnly ("org.projectlombok:lombok:1.18.38")
     annotationProcessor ("org.projectlombok:lombok:1.18.38")
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.9'
 }
 
 tasks {

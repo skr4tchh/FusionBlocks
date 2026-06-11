@@ -33,7 +33,7 @@ public class Chunker {
     }
 
     public ItemStack getItemStack() {
-        ItemStack itemStack = ItemUtil.create(new ItemStack(Material.FURNACE), this.name);
+        ItemStack itemStack = ItemUtil.create(new ItemStack(Material.STRUCTURE_BLOCK), this.name);
         ItemMeta meta = itemStack.getItemMeta();
         if (meta != null) {
             meta.getPersistentDataContainer().set(this.key, PersistentDataType.STRING, this.key.getKey());
