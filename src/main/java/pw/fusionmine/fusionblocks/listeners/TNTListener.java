@@ -82,7 +82,7 @@ public class TNTListener implements Listener {
         Location location = block.getLocation();
         TNT TNT = tntManager.getPlacedTNT(location);
         if (TNT != null) {
-            block.getLocation().getWorld().dropItemNaturally(location, TNT.getItemStack());
+            location.getWorld().dropItemNaturally(location, TNT.getItemStack());
             tntManager.removeTnt(location);
 
             e.setDropItems(false);

@@ -1,0 +1,22 @@
+chunkers:
+  one:
+    name: "Прогрузчик чанков [1x1]"
+    radius: 1
+    description:
+      - ""
+      - "хуй"
+      - ""
+  three:
+    name: "Прогрузчик чанков [3x3]"
+    radius: 3
+    description:
+      - ""
+      - "хуй"
+      - ""
+  five:
+    name: "Прогрузчик чанков [5x5]"
+    radius: 5
+    description:
+      - ""
+      - "хуй"
+      - ""

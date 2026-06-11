@@ -56,7 +56,6 @@ public class FurnaceManager {
         return null;
     }
 
-
     public void register(String key, CustomFurnace furnace) {
         FurnaceHashMap.put(key, furnace);
     }

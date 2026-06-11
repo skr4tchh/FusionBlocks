@@ -68,7 +68,7 @@ public class FurnaceSettings {
             }
         }
 
-        plugin.getLogger().info("Загружено " + furnaceManager.FurnaceHashMap.size() + " кастомных печек.");
+        plugin.getLogger().info("Загружено " + furnaceManager.FurnaceHashMap.size() + " видов кастомных печек.");
     }
 
 }

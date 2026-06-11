@@ -73,7 +73,7 @@ public class TNTSettings {
             }
         }
 
-        plugin.getLogger().info("Загружено " + tntManager.TNTHashMap.size() + " кастомных динамитов.");
+        plugin.getLogger().info("Загружено " + tntManager.TNTHashMap.size() + " видов кастомных динамитов.");
     }
 
 }

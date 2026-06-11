@@ -20,7 +20,10 @@ public class TNTStorage {
 
     private FileConfiguration config;
 
+    private FusionBlocks plugin;
+
     public TNTStorage(FusionBlocks plugin, TNTManager tntManager) {
+        this.plugin = plugin;
         this.tntManager = tntManager;
         this.file = new File(plugin.getDataFolder(), "storage/tnt.yml");
         if (!this.file.exists()) {
@@ -50,6 +53,7 @@ public class TNTStorage {
                 tntManager.placeTnt(location, customTnt);
             }
         }
+        this.plugin.getLogger().info("На сервере установлено " + tntManager.placedTNT.size() + " кастомных динамитов.");
     }
 
     public void save(Location location, TNT customTnt) {

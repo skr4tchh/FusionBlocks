@@ -68,7 +68,7 @@ public class BrewingStandSettings {
             }
         }
 
-        plugin.getLogger().info("Загружено " + brewingStandManager.BrewingStandHashMap.size() + " кастомных зельеварок.");
+        plugin.getLogger().info("Загружено " + brewingStandManager.BrewingStandHashMap.size() + " видов кастомных зельеварок.");
     }
 
 }

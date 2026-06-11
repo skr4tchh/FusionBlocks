@@ -21,7 +21,10 @@ public class FurnaceStorage {
 
     private FileConfiguration config;
 
+    private FusionBlocks plugin;
+
     public FurnaceStorage(FusionBlocks plugin, FurnaceManager furnaceManager) {
+        this.plugin = plugin;
         this.furnaceManager = furnaceManager;
         this.file = new File(plugin.getDataFolder(), "storage/furnace.yml");
         if (!this.file.exists()) {
@@ -51,6 +54,8 @@ public class FurnaceStorage {
                 furnaceManager.placeFurnace(location, customFurnace);
             }
         }
+
+        this.plugin.getLogger().info("На сервере установлено " + furnaceManager.placedFurnace.size() + " кастомных печек.");
     }
 
     public void save(Location location, CustomFurnace customFurnace) {
