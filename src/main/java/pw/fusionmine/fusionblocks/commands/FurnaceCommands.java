@@ -28,7 +28,7 @@ public class FurnaceCommands implements CommandExecutor, TabCompleter {
                 CustomFurnace customFurnace = furnaceManager.getFurnace(key);
 
                 if (customFurnace == null) {
-                    cs.sendMessage(plugin.getLang().prefix("nofound").replace("{key}", key));
+                    cs.sendMessage(plugin.getLang().prefix("nofound"));
                     return true;
                 }
 

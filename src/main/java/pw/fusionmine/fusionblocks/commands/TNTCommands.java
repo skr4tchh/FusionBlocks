@@ -28,7 +28,7 @@ public class TNTCommands implements CommandExecutor, TabCompleter {
                 TNT customTnt = tntManager.getTNT(key);
 
                 if (customTnt == null) {
-                    cs.sendMessage(plugin.getLang().prefix("nofound").replace("{key}", key));
+                    cs.sendMessage(plugin.getLang().prefix("nofound"));
                     return true;
                 }
 

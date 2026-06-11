@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pw.fusionmine.fusionblocks.blocks.brewingstand.BrewingStandManager;
 import pw.fusionmine.fusionblocks.blocks.furnace.FurnaceManager;
 import pw.fusionmine.fusionblocks.blocks.tnt.TNTManager;
+import pw.fusionmine.fusionblocks.commands.BrewingStandCommands;
 import pw.fusionmine.fusionblocks.commands.FurnaceCommands;
 import pw.fusionmine.fusionblocks.commands.TNTCommands;
 import pw.fusionmine.fusionblocks.lang.Lang;
@@ -59,6 +60,7 @@ public class FusionBlocks extends JavaPlugin {
     private void registerCommands() {
         getServer().getPluginCommand("fusioncustomtnt").setExecutor(new TNTCommands(this, tntManager));
         getServer().getPluginCommand("fusioncustomfurnace").setExecutor(new FurnaceCommands(this, furnaceManager));
+        getServer().getPluginCommand("fusioncustombrewingstand").setExecutor(new BrewingStandCommands(this, brewingStandManager));
     }
 
     private void registerTasks() {
