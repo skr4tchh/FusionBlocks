@@ -1,0 +1,61 @@
+tnts:
+  liquidcleaner:
+    name: "<gradient:#1E90FF:#00BFFF>Водяная бомба</gradient>"
+    power: 16 #if power = 20, radius ~ 10, f = (power / 2)
+    stonedamage: 0 # Used in the API
+    setfire: true # Effects on the tnt block
+    breakblocks: true # If enabled, breaks blocks
+    replaceblocks:
+      replace: true # If enabled can change blocks to other blocks
+      replaced-blocks: # Type of block to be changed to
+        - WATER
+        - LAVA
+      setblock: AIR # Type of block to be applied
+    description:
+      - ""
+      - " <gradient:#FFFFFF:#FFFFFF>Особенности:</gradient>"
+      - " <gradient:#FFFFFF:#FFFFFF>Убирает</gradient> <gradient:#1E90FF:#00BFFF>воду</gradient>"
+      - ""
+  obsidiym:
+    name: "<gradient:#620068:#340070>Обсидиум</gradient>"
+    power: 16 #if power = 20, radius ~ 10, f = (power / 2)
+    stonedamage: 0 # Used in the API
+    setfire: true # Effects on the tnt block
+    breakblocks: true # If enabled, breaks blocks
+    replaceblocks:
+      replace: true # If enabled can change blocks to other blocks
+      replaced-blocks: # Type of block to be changed to
+        - OBSIDIAN
+        - CRYING_OBSIDIAN
+      setblock: AIR # Type of block to be applied
+    description:
+      - ""
+      - " <gradient:#FFFFFF:#FFFFFF>Особенности:</gradient>"
+      - " <gradient:#FFFFFF:#FFFFFF>Взрывает</gradient> <gradient:#620068:#340070>особо прочные</gradient> <gradient:#FFFFFF:#FFFFFF>блоки</gradient>"
+      - ""
+  medium:
+    name: "<gradient:#FFA500:#FF4500>Средняя бомба</gradient>"
+    power: 8
+    stonedamage: 0
+    setfire: true
+    breakblocks: true
+    replaceblocks:
+      replace: false
+    description:
+      - ""
+      - " <gradient:#FFFFFF:#FFFFFF>Особенности:</gradient>"
+      - " <gradient:#FFFFFF:#FFFFFF>Сила взрыва</gradient> <gradient:#FFA500:#FF4500>x2</gradient>"
+      - ""
+  mega:
+    name: "<gradient:#FF0000:#8B0000>Мощная бомба</gradient>"
+    power: 16
+    stonedamage: 0
+    setfire: true
+    breakblocks: true
+    replaceblocks:
+      replace: false
+    description:
+      - ""
+      - " <gradient:#FFFFFF:#FFFFFF>Особенности:</gradient>"
+      - " <gradient:#FFFFFF:#FFFFFF>Сила взрыва</gradient> <gradient:#FF0000:#8B0000>x3</gradient>"
+      - ""

@@ -20,8 +20,11 @@ public class TNTSettings {
 
     private TNTManager tntManager;
 
+    private FusionBlocks plugin;
+
     public TNTSettings(FusionBlocks plugin, TNTManager tntManager) {
         this.tntManager = tntManager;
+        this.plugin = plugin;
         this.file = new File(plugin.getDataFolder(), "settings/tnt.yml");
         if (!this.file.exists()) {
             plugin.saveResource("settings/tnt.yml", false);
@@ -67,6 +70,7 @@ public class TNTSettings {
                 tntManager.register(key, customTnt);
             }
         }
+        plugin.getLogger().info("Загружено " + tntManager.TNTHashMap.size() + " кастомных динамитов.");
     }
 
 }
