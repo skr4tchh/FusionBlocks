@@ -1,0 +1,52 @@
+package pw.fusionmine.fusionblocks;
+
+import lombok.Getter;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+import pw.fusionmine.fusionblocks.blocks.tnt.TNTManager;
+import pw.fusionmine.fusionblocks.commands.TNTCommands;
+import pw.fusionmine.fusionblocks.lang.Lang;
+import pw.fusionmine.fusionblocks.listeners.TNTListener;
+
+import java.io.File;
+
+@Getter
+public class FusionBlocks extends JavaPlugin {
+
+    private TNTManager tntManager;
+
+    private Lang lang;
+
+    private static FusionBlocks instance;
+
+    @Override
+    public void onEnable() {
+        instance = this;
+
+        this.lang = new Lang(getDataFolder() + File.separator + "lang.yml");
+        this.tntManager = new TNTManager(this);
+
+        registerListeners();
+        registerCommands();
+    }
+
+    @Override
+    public void onDisable() {
+        this.tntManager.unload();
+    }
+
+    private void registerListeners() {
+        PluginManager pluginManager = Bukkit.getPluginManager();
+        pluginManager.registerEvents(new TNTListener(this.tntManager), this);
+    }
+
+    private void registerCommands() {
+        getServer().getPluginCommand("fusioncustomtnt").setExecutor(new TNTCommands(this, tntManager));
+    }
+
+    public static FusionBlocks getInstance() {
+        return instance;
+    }
+
+}

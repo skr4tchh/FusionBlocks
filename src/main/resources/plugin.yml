@@ -1,0 +1,6 @@
+name: FusionBlocks
+version: '${version}'
+main: pw.fusionmine.fusionblocks.FusionBlocks
+api-version: '1.21'
+commands:
+  fusioncustomtnt:
