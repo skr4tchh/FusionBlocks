@@ -35,6 +35,8 @@ public class TNTSettings {
 
     public void load() {
         ConfigurationSection tntsection = this.configuration.getConfigurationSection("tnts");
+        if(tntsection == null)
+            return;
         for (String key : tntsection.getKeys(false)) {
             ConfigurationSection tnt = tntsection.getConfigurationSection(key);
             if (tnt != null) {
@@ -70,6 +72,7 @@ public class TNTSettings {
                 tntManager.register(key, customTnt);
             }
         }
+
         plugin.getLogger().info("Загружено " + tntManager.TNTHashMap.size() + " кастомных динамитов.");
     }
 

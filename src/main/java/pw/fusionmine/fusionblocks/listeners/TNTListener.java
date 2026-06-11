@@ -88,20 +88,15 @@ public class TNTListener implements Listener {
     @EventHandler
     public void placeTNT(BlockPlaceEvent e) {
         ItemStack itemStack = e.getItemInHand();
-
         if (itemStack.getItemMeta() == null)
             return;
         ItemMeta meta = itemStack.getItemMeta();
-        TNT TNT = null;
         for (TNT tnt : tntManager.getAll()) {
             if (meta.getPersistentDataContainer().has(tnt.getKey())) {
-                TNT = tnt;
+                tntManager.placeTnt(e.getBlockPlaced().getLocation(), tnt);
                 break;
             }
         }
-        if (TNT == null)
-            return;
-        tntManager.placeTnt(e.getBlockPlaced().getLocation(), TNT);
     }
 
 }
