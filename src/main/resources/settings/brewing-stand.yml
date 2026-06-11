@@ -9,7 +9,7 @@ brewing-stands:
       - "&e&l ╰ &fтоплива &aменьше&f обычной"
       - ""
   speed:
-    name: "&b&lБыстрая печка"
+    name: "&b&lБыстрая зельеварка"
     attributes:
       speed: 2.0
     description:

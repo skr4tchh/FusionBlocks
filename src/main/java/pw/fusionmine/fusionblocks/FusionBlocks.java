@@ -11,6 +11,7 @@ import pw.fusionmine.fusionblocks.commands.BrewingStandCommands;
 import pw.fusionmine.fusionblocks.commands.FurnaceCommands;
 import pw.fusionmine.fusionblocks.commands.TNTCommands;
 import pw.fusionmine.fusionblocks.lang.Lang;
+import pw.fusionmine.fusionblocks.listeners.BrewingStandListener;
 import pw.fusionmine.fusionblocks.listeners.FurnaceListener;
 import pw.fusionmine.fusionblocks.listeners.TNTListener;
 import pw.fusionmine.fusionblocks.tasks.BrewingStandTask;
@@ -55,6 +56,7 @@ public class FusionBlocks extends JavaPlugin {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new TNTListener(this.tntManager), this);
         pluginManager.registerEvents(new FurnaceListener(this, this.furnaceManager), this);
+        pluginManager.registerEvents(new BrewingStandListener(this.brewingStandManager), this);
     }
 
     private void registerCommands() {
