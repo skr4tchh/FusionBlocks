@@ -44,7 +44,7 @@ public class FurnaceStorage {
                 int y = Integer.parseInt(split[2]);
                 int z = Integer.parseInt(split[3]);
                 Location location = new Location(Bukkit.getWorld(world), x, y, z);
-                CustomFurnace customFurnace = furnaceManager.getFurnace(furnacesection.getString("furnacetype"));
+                CustomFurnace customFurnace = furnaceManager.getFurnace(furnacesection.getString("type"));
                 if (location.getBlock().getType() != Material.FURNACE) {
                     location.getBlock().setType(Material.FURNACE);
                 }
@@ -59,7 +59,7 @@ public class FurnaceStorage {
         this.config.set(key + ".location.y", Integer.valueOf(location.getBlockY()));
         this.config.set(key + ".location.z", Integer.valueOf(location.getBlockZ()));
         this.config.set(key + ".location.world", location.getWorld().getName());
-        this.config.set(key + ".furnacetype", customFurnace.getKey().getKey());
+        this.config.set(key + ".type", customFurnace.getKey().getKey());
         try {
             this.config.save(this.file);
         } catch (IOException e) {

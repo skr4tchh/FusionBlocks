@@ -43,7 +43,7 @@ public class TNTStorage {
                 int y = Integer.parseInt(split[2]);
                 int z = Integer.parseInt(split[3]);
                 Location location = new Location(Bukkit.getWorld(world), x, y, z);
-                TNT customTnt = tntManager.getTNT(tntsection.getString("tnttype"));
+                TNT customTnt = tntManager.getTNT(tntsection.getString("type"));
                 if (location.getBlock().getType() != Material.TNT) {
                     location.getBlock().setType(Material.TNT);
                 }
@@ -58,7 +58,7 @@ public class TNTStorage {
         this.config.set(key + ".location.y", Integer.valueOf(location.getBlockY()));
         this.config.set(key + ".location.z", Integer.valueOf(location.getBlockZ()));
         this.config.set(key + ".location.world", location.getWorld().getName());
-        this.config.set(key + ".tnttype", customTnt.getKey().getKey());
+        this.config.set(key + ".type", customTnt.getKey().getKey());
         try {
             this.config.save(this.file);
         } catch (IOException e) {

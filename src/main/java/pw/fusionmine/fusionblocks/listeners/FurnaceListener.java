@@ -47,12 +47,14 @@ public class FurnaceListener implements Listener {
             return;
         if(furnace.hasAttribute("speed")) {
             double speed = furnace.getAttribute("speed");
-            String key = LocationUtil.toKey(location);
-            int extra = (int) (speed - 1.0D);
-            if (extra < 1)
-                extra = 1;
-            this.activeFurnaces.put(key, new SpeedEntry(location, extra));
-            startGlobalTask();
+            if (speed > 1.0D) {
+                String key = LocationUtil.toKey(location);
+                int extra = (int) (speed - 1.0D);
+                if (extra < 1)
+                    extra = 1;
+                this.activeFurnaces.put(key, new SpeedEntry(location, extra));
+                startGlobalTask();
+            }
         }
         if(furnace.hasAttribute("fuel_efficiency")) {
             double fuelMul = furnace.getAttribute("fuel_efficiency");
@@ -107,18 +109,18 @@ public class FurnaceListener implements Listener {
     public void breakFurnace(BlockBreakEvent e) {
         Block block = e.getBlock();
         Location location = block.getLocation();
-        CustomFurnace customFurnace = furnaceManager.getPlacedFurnace(e.getBlock().getLocation().getBlock().getLocation());
+        CustomFurnace customFurnace = furnaceManager.getPlacedFurnace(location);
         if (customFurnace != null) {
             if (block.getState() instanceof Furnace) {
-                Furnace furnace = (Furnace)block.getState();
+                Furnace furnace = (Furnace) block.getState();
                 FurnaceInventory inv = furnace.getInventory();
                 dropIfPresent(inv.getSmelting(), location);
                 dropIfPresent(inv.getFuel(), location);
                 dropIfPresent(inv.getResult(), location);
                 inv.clear();
             }
-            location.getWorld().dropItemNaturally(e.getBlock().getLocation(), customFurnace.getItemStack());
-            furnaceManager.removeFurnace(e.getBlock().getLocation());
+            location.getWorld().dropItemNaturally(location, customFurnace.getItemStack());
+            furnaceManager.removeFurnace(location);
 
             e.setDropItems(false);
         }

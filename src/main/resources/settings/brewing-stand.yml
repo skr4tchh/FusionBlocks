@@ -1,0 +1,19 @@
+brewing-stands:
+  efficient:
+    name: "&d&lТопливная зельеварка"
+    attributes:
+      fuel_efficiency: 0.5
+    description:
+      - ""
+      - "&e&l ╭ &fДанная &eзельеварка&f использует"
+      - "&e&l ╰ &fтоплива &aменьше&f обычной"
+      - ""
+  speed:
+    name: "&b&lБыстрая печка"
+    attributes:
+      speed: 2.0
+    description:
+      - ""
+      - "&e&l ╭ &fДанная зельеварка &6варит &fв"
+      - "&e&l ╰ &f2 раза &aбыстрее&f обычной"
+      - ""
