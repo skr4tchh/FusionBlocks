@@ -108,6 +108,8 @@ public class FurnaceListener implements Listener {
     @EventHandler
     public void breakFurnace(BlockBreakEvent e) {
         Block block = e.getBlock();
+        if(block.getType() != Material.FURNACE)
+            return;
         Location location = block.getLocation();
         CustomFurnace customFurnace = furnaceManager.getPlacedFurnace(location);
         if (customFurnace != null) {
@@ -134,6 +136,8 @@ public class FurnaceListener implements Listener {
     @EventHandler
     public void placeFurnace(BlockPlaceEvent e) {
         ItemStack itemStack = e.getItemInHand();
+        if(itemStack.getType() != Material.FURNACE)
+            return;
         if (itemStack.getItemMeta() == null)
             return;
         ItemMeta meta = itemStack.getItemMeta();

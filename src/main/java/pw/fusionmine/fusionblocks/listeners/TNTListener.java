@@ -2,6 +2,7 @@ package pw.fusionmine.fusionblocks.listeners;
 
 import lombok.AllArgsConstructor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
@@ -75,10 +76,14 @@ public class TNTListener implements Listener {
 
     @EventHandler
     public void breakTNT(BlockBreakEvent e) {
-        TNT TNT = tntManager.getPlacedTNT(e.getBlock().getLocation().getBlock().getLocation());
+        Block block = e.getBlock();
+        if(block.getType() != Material.TNT)
+            return;
+        Location location = block.getLocation();
+        TNT TNT = tntManager.getPlacedTNT(location);
         if (TNT != null) {
-            e.getBlock().getLocation().getWorld().dropItemNaturally(e.getBlock().getLocation(), TNT.getItemStack());
-            tntManager.removeTnt(e.getBlock().getLocation());
+            block.getLocation().getWorld().dropItemNaturally(location, TNT.getItemStack());
+            tntManager.removeTnt(location);
 
             e.setDropItems(false);
         }
@@ -88,6 +93,8 @@ public class TNTListener implements Listener {
     @EventHandler
     public void placeTNT(BlockPlaceEvent e) {
         ItemStack itemStack = e.getItemInHand();
+        if(itemStack.getType() != Material.TNT)
+            return;
         if (itemStack.getItemMeta() == null)
             return;
         ItemMeta meta = itemStack.getItemMeta();

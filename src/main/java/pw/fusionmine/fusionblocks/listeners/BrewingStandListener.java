@@ -39,6 +39,8 @@ public class BrewingStandListener implements Listener {
     @EventHandler
     public void breakBrewingStand(BlockBreakEvent e) {
         Block block = e.getBlock();
+        if(block.getType() != Material.BREWING_STAND)
+            return;
         Location location = block.getLocation();
         CustomBrewingStand customBrewingStand = brewingStandManager.getPlacedBrewingStand(location);
         if (customBrewingStand != null) {
@@ -61,6 +63,8 @@ public class BrewingStandListener implements Listener {
     @EventHandler
     public void placeBrewingStand(BlockPlaceEvent e) {
         ItemStack itemStack = e.getItemInHand();
+        if(itemStack.getType() != Material.BREWING_STAND)
+            return;
         if (itemStack.getItemMeta() == null)
             return;
         ItemMeta meta = itemStack.getItemMeta();
