@@ -9,12 +9,14 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.inventory.FurnaceInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import pw.fusionmine.fusionblocks.FusionBlocks;
+import pw.fusionmine.fusionblocks.blocks.brewingstand.CustomBrewingStand;
 import pw.fusionmine.fusionblocks.blocks.furnace.CustomFurnace;
 import pw.fusionmine.fusionblocks.blocks.furnace.FurnaceManager;
 import pw.fusionmine.fusionblocks.utils.LocationUtil;
@@ -113,24 +115,10 @@ public class FurnaceListener implements Listener {
         Location location = block.getLocation();
         CustomFurnace customFurnace = furnaceManager.getPlacedFurnace(location);
         if (customFurnace != null) {
-            if (block.getState() instanceof Furnace) {
-                Furnace furnace = (Furnace) block.getState();
-                FurnaceInventory inv = furnace.getInventory();
-                dropIfPresent(inv.getSmelting(), location);
-                dropIfPresent(inv.getFuel(), location);
-                dropIfPresent(inv.getResult(), location);
-                inv.clear();
-            }
-            location.getWorld().dropItemNaturally(location, customFurnace.getItemStack());
+            furnaceManager.dropFurnace(location, block, customFurnace);
             furnaceManager.removeFurnace(location);
-
             e.setDropItems(false);
         }
-    }
-
-    private void dropIfPresent(ItemStack item, Location location) {
-        if (item != null && item.getType() != Material.AIR)
-            location.getWorld().dropItemNaturally(location, item);
     }
 
     @EventHandler

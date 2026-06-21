@@ -47,7 +47,7 @@ public class TNTStorage {
                 if (location.getBlock().getType() != Material.TNT) {
                     location.getBlock().setType(Material.TNT);
                 }
-                tntManager.placeTnt(location, customTnt);
+                tntManager.placeTNT(location, customTnt);
             }
         }
     }

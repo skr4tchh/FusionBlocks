@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BrewingStand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.BrewingStandFuelEvent;
-import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import pw.fusionmine.fusionblocks.blocks.brewingstand.BrewingStandManager;
@@ -44,18 +42,8 @@ public class BrewingStandListener implements Listener {
         Location location = block.getLocation();
         CustomBrewingStand customBrewingStand = brewingStandManager.getPlacedBrewingStand(location);
         if (customBrewingStand != null) {
-            if (block.getState() instanceof BrewingStand) {
-                BrewingStand stand = (BrewingStand)block.getState();
-                BrewerInventory inv = stand.getInventory();
-                for (ItemStack content : inv.getContents()) {
-                    if (content != null && content.getType() != Material.AIR)
-                        block.getWorld().dropItemNaturally(location, content);
-                }
-                inv.clear();
-            }
-            block.getWorld().dropItemNaturally(location, customBrewingStand.getItemStack());
+            brewingStandManager.dropBrewingStand(location, block, customBrewingStand);
             brewingStandManager.removeBrewingStand(location);
-
             e.setDropItems(false);
         }
     }

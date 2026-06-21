@@ -44,7 +44,7 @@ public class ChunkerStorage {
                 int y = Integer.parseInt(split[2]);
                 int z = Integer.parseInt(split[3]);
                 Location location = new Location(Bukkit.getWorld(world), x, y, z);
-                Chunker chunker = chunkerManager.getChuncker(chunkersection.getString("type"));
+                Chunker chunker = chunkerManager.getChunker(chunkersection.getString("type"));
                 if (location.getBlock().getType() != Material.STRUCTURE_BLOCK) {
                     location.getBlock().setType(Material.STRUCTURE_BLOCK);
                 }

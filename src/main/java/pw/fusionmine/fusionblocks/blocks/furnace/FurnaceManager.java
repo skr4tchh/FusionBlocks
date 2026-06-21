@@ -1,6 +1,11 @@
 package pw.fusionmine.fusionblocks.blocks.furnace;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.Furnace;
+import org.bukkit.inventory.FurnaceInventory;
+import org.bukkit.inventory.ItemStack;
 import pw.fusionmine.fusionblocks.FusionBlocks;
 import pw.fusionmine.fusionblocks.blocks.furnace.storage.FurnaceSettings;
 import pw.fusionmine.fusionblocks.blocks.furnace.storage.FurnaceStorage;
@@ -47,6 +52,23 @@ public class FurnaceManager {
     public void removeFurnace(Location location) {
         this.storage.remove(location);
         placedFurnace.remove(location);
+    }
+
+    public void dropFurnace(Location location, Block block, CustomFurnace customFurnace) {
+        if (block.getState() instanceof Furnace) {
+            Furnace furnace = (Furnace) block.getState();
+            FurnaceInventory inv = furnace.getInventory();
+            dropIfPresent(inv.getSmelting(), location);
+            dropIfPresent(inv.getFuel(), location);
+            dropIfPresent(inv.getResult(), location);
+            inv.clear();
+        }
+        location.getWorld().dropItemNaturally(location, customFurnace.getItemStack());
+    }
+
+    private void dropIfPresent(ItemStack item, Location location) {
+        if (item != null && item.getType() != Material.AIR)
+            location.getWorld().dropItemNaturally(location, item);
     }
 
     public CustomFurnace getPlacedFurnace(Location location) {

@@ -25,7 +25,7 @@ public class ChunkerCommands implements CommandExecutor, TabCompleter {
         if (cs.hasPermission("fusionblocks.admin")) {
             if (args.length >= 3 && args[0].equalsIgnoreCase("give")) {
                 String key = args[1];
-                Chunker chunker = chunkerManager.getChuncker(key);
+                Chunker chunker = chunkerManager.getChunker(key);
 
                 if (chunker == null) {
                     cs.sendMessage(plugin.getLang().prefix("nofound"));

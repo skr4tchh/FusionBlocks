@@ -1,7 +1,11 @@
 package pw.fusionmine.fusionblocks.blocks.brewingstand;
 
-import lombok.Getter;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BrewingStand;
+import org.bukkit.inventory.BrewerInventory;
+import org.bukkit.inventory.ItemStack;
 import pw.fusionmine.fusionblocks.FusionBlocks;
 import pw.fusionmine.fusionblocks.blocks.brewingstand.storage.BrewingStandSettings;
 import pw.fusionmine.fusionblocks.blocks.brewingstand.storage.BrewingStandStorage;
@@ -50,13 +54,25 @@ public class BrewingStandManager {
         placedBrewingStand.remove(location);
     }
 
+    public void dropBrewingStand(Location location, Block block, CustomBrewingStand customBrewingStand) {
+        if (block.getState() instanceof BrewingStand) {
+            BrewingStand stand = (BrewingStand) block.getState();
+            BrewerInventory inv = stand.getInventory();
+            for (ItemStack content : inv.getContents()) {
+                if (content != null && content.getType() != Material.AIR)
+                    block.getWorld().dropItemNaturally(location, content);
+            }
+            inv.clear();
+        }
+        block.getWorld().dropItemNaturally(location, customBrewingStand.getItemStack());
+    }
+
     public CustomBrewingStand getPlacedBrewingStand(Location location) {
         if (isBrewingStand(location)) {
             return placedBrewingStand.get(location);
         }
         return null;
     }
-
 
     public void register(String key, CustomBrewingStand brewingStand) {
         BrewingStandHashMap.put(key, brewingStand);

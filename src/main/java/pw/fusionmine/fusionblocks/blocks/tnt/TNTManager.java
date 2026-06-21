@@ -1,6 +1,8 @@
 package pw.fusionmine.fusionblocks.blocks.tnt;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import pw.fusionmine.fusionblocks.FusionBlocks;
 import pw.fusionmine.fusionblocks.blocks.tnt.storage.TNTSettings;
 import pw.fusionmine.fusionblocks.blocks.tnt.storage.TNTStorage;
@@ -40,13 +42,17 @@ public class TNTManager {
         return false;
     }
 
-    public void placeTnt(Location location, TNT TNT) {
+    public void placeTNT(Location location, TNT TNT) {
         placedTNT.put(location, TNT);
     }
 
-    public void removeTnt(Location location) {
+    public void removeTNT(Location location) {
         this.storage.remove(location);
         placedTNT.remove(location);
+    }
+
+    public void dropTNT(Location location, TNT TNT) {
+        location.getWorld().dropItemNaturally(location, TNT.getItemStack());
     }
 
     public TNT getPlacedTNT(Location location) {

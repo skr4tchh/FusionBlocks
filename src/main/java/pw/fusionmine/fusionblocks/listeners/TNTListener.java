@@ -33,7 +33,7 @@ public class TNTListener implements Listener {
                 primed.setYield(TNT.getPower());
                 primed.setVisualFire(TNT.isIssetfire());
                 primed.getPersistentDataContainer().set(TNT.getKey(), PersistentDataType.STRING, TNT.getKey().getKey());
-                tntManager.removeTnt(e.getEntity().getLocation().getBlock().getLocation());
+                tntManager.removeTNT(e.getEntity().getLocation().getBlock().getLocation());
             }
         }
     }
@@ -82,13 +82,11 @@ public class TNTListener implements Listener {
         Location location = block.getLocation();
         TNT TNT = tntManager.getPlacedTNT(location);
         if (TNT != null) {
-            location.getWorld().dropItemNaturally(location, TNT.getItemStack());
-            tntManager.removeTnt(location);
-
+            tntManager.dropTNT(location, TNT);
+            tntManager.removeTNT(location);
             e.setDropItems(false);
         }
     }
-
 
     @EventHandler
     public void placeTNT(BlockPlaceEvent e) {
@@ -100,7 +98,7 @@ public class TNTListener implements Listener {
         ItemMeta meta = itemStack.getItemMeta();
         for (TNT tnt : tntManager.getAll()) {
             if (meta.getPersistentDataContainer().has(tnt.getKey())) {
-                tntManager.placeTnt(e.getBlockPlaced().getLocation(), tnt);
+                tntManager.placeTNT(e.getBlockPlaced().getLocation(), tnt);
                 break;
             }
         }

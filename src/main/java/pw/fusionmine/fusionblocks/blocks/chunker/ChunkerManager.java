@@ -19,7 +19,10 @@ public class ChunkerManager {
 
     private ChunkerStorage storage;
 
+    private FusionBlocks plugin;
+
     public ChunkerManager(FusionBlocks plugin) {
+        this.plugin = plugin;
         this.settings = new ChunkerSettings(plugin, this);
         this.storage = new ChunkerStorage(plugin, this);
     }
@@ -28,6 +31,7 @@ public class ChunkerManager {
         placedChunker.forEach((k, v) -> {
             if (v != null) {
                 this.storage.save(k, v);
+                toggleForceLoad(k, v.getRadius(), false);
             }
         });
     }
@@ -56,13 +60,20 @@ public class ChunkerManager {
         World w = loc.getWorld();
         if (w == null)
             return;
+
         int cx = loc.getChunk().getX(), cz = loc.getChunk().getZ();
-        for (int dx = -radius; dx <= radius; ) {
-            for (int dz = -radius; dz <= radius; ) {
-                w.getChunkAt(cx + dx, cz + dz).setForceLoaded(state);
-                dz++;
+        int targetRadius = Math.max(0, (radius - 1) / 2);
+
+        for (int dx = -targetRadius; dx <= targetRadius; dx++) {
+            for (int dz = -targetRadius; dz <= targetRadius; dz++) {
+                int targetX = cx + dx;
+                int targetZ = cz + dz;
+                if (state) {
+                    w.addPluginChunkTicket(targetX, targetZ, plugin);
+                } else {
+                    w.removePluginChunkTicket(targetX, targetZ, plugin);
+                }
             }
-            dx++;
         }
     }
 
@@ -73,12 +84,11 @@ public class ChunkerManager {
         return null;
     }
 
-
     public void register(String key, Chunker chunker) {
         ChunkerHashMap.put(key, chunker);
     }
 
-    public Chunker getChuncker(String key) {
+    public Chunker getChunker(String key) {
         return ChunkerHashMap.get(key);
     }
 
